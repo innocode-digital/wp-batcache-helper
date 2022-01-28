@@ -1,6 +1,6 @@
 {
   "name": "innocode-digital/wp-batcache-helper",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "wordpress-muplugin",
   "description": "Improves Batcache cache flushing.",
   "license": "GPL-2.0+",
@@ -17,6 +17,6 @@
   ],
   "require": {
     "php": ">=7.1",
-    "innocode-digital/wp-post-rel-urls": "dev-main"
+    "innocode-digital/wp-rel-urls": "dev-main"
   }
 }
