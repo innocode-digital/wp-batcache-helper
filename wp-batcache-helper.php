@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Batcache Helper
  * Description: Improves Batcache cache flushing.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Innocode
  * Author URI: https://innocode.com
  * Tested up to: 5.9.0
@@ -24,11 +24,6 @@ if (
     return;
 }
 
-// Requires Batcache Manager.
-if ( ! function_exists( 'batcache_clear_url' ) ) {
-    return;
-}
-
 if ( ! function_exists( 'innocode_batcache_disable_default' ) ) {
     function innocode_batcache_disable_default() {
         remove_action( 'clean_post_cache', 'batcache_post' );
@@ -43,7 +38,9 @@ if ( ! function_exists( 'innocode_batcache_flush_post' ) ) {
      * @return array
      */
     function innocode_batcache_flush_post( int $post_id ) : array {
-        return array_map( 'batcache_clear_url', innocode_get_post_rel_urls( $post_id ) );
+        return function_exists( 'batcache_clear_url' )
+            ? array_map( 'batcache_clear_url', innocode_get_post_rel_urls( $post_id ) )
+            : [];
     }
 }
 
@@ -68,7 +65,9 @@ if ( ! function_exists( 'innocode_batcache_flush_term' ) ) {
      * @return array
      */
     function innocode_batcache_flush_term( int $term_id, int $tt_id ) : array {
-        return array_map( 'batcache_clear_url', innocode_get_term_rel_urls( $tt_id ) );
+        return function_exists( 'batcache_clear_url' )
+            ? array_map( 'batcache_clear_url', innocode_get_term_rel_urls( $tt_id ) )
+            : [];
     }
 }
 
@@ -77,10 +76,12 @@ add_action( 'delete_term', 'innocode_batcache_flush_term', 10, 2 );
 
 if ( ! function_exists( 'innocode_batcache_flush_user' ) ) {
     function innocode_batcache_flush_user( int $user_id ) : array {
-        return array_map( 'batcache_clear_url', innocode_get_user_rel_urls( $user_id ) );
+        return function_exists( 'batcache_clear_url' )
+            ? array_map( 'batcache_clear_url', innocode_get_user_rel_urls( $user_id ) )
+            : [];
     }
 }
 
-add_action( 'personal_options_update', 'innocode_batcache_flush_user' );
-add_action( 'edit_user_profile_update', 'innocode_batcache_flush_user' );
+add_action( 'user_register', 'innocode_batcache_flush_user' );
+add_action( 'profile_update', 'innocode_batcache_flush_user' );
 add_action( 'delete_user', 'innocode_batcache_flush_user' );
