@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Batcache Helper
  * Description: Improves Batcache cache flushing.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Innocode
  * Author URI: https://innocode.com
  * Tested up to: 5.9.0
@@ -16,10 +16,10 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 // Repeat condition from Batcache Manager.
 if (
-    ! isset( $batcache ) ||
-    ! is_object( $batcache ) ||
-    ! isset( $wp_object_cache ) ||
-    ! method_exists( $wp_object_cache, 'incr' )
+    ! isset( $GLOBALS['batcache'] ) ||
+    ! is_object( $GLOBALS['batcache'] ) ||
+    ! isset( $GLOBALS['wp_object_cache'] ) ||
+    ! method_exists( $GLOBALS['wp_object_cache'], 'incr' )
 ) {
     return;
 }
