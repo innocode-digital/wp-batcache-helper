@@ -1,0 +1,22 @@
+{
+  "name": "innocode-digital/wp-batcache-helper",
+  "version": "1.0.0",
+  "type": "wordpress-muplugin",
+  "description": "Improves Batcache cache flushing.",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Innocode",
+      "email": "post@innocode.no",
+      "homepage": "https://innocode.com/"
+    },
+    {
+      "name": "Viktor Kuliebiakin",
+      "email": "kuliebiakin@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "innocode-digital/wp-post-rel-urls": "dev-main"
+  }
+}
