@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Batcache Helper
  * Description: Improves Batcache cache flushing.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Innocode
  * Author URI: https://innocode.com
  * Tested up to: 5.9.0
